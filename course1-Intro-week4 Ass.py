@@ -124,5 +124,17 @@ def run_ttest():
     print(non_universitytownshp['ratio'] )
     stats.ttest_ind(universtytowmshp['ratio'], non_universitytownshp['ratio'])
     
-    #return x
+    stat,p = stats.ttest_ind(universtytowmshp['ratio'], non_universitytownshp['ratio'])
+
+    utmean = universtytowmshp['ratio'].mean()
+    non_utmean = non_universitytownshp['ratio'].mean()
+    if utmean < non_utmean:
+        better = "university town"
+    else:
+        better = "non-university town"
+     
+    different = True if p< 0.01 else False
+        
+    return different, p, better 
+
 print(run_ttest())
